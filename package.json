@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "cross-env NODE_ENV=test nodemon --exec 'mocha --recursive -R min' "
   },
   "author": "Vedansh K",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "express": "^4.18.2",
     "mocha": "^10.2.0",
     "mongoose": "^6.9.1",
+    "nodemon": "^2.0.20",
     "supertest": "^6.3.3"
   }
 }
