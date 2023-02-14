@@ -8,20 +8,20 @@ before((done) => {
     })
     .on("error", (err) => {
       console.warn("Warning", err);
-      done()
+      done();
     });
 });
 
+beforeEach((done) => {
+  const { drivers } = mongoose.connection.collections;
 
-beforeEach(done =>{
-
-    const {drivers}  = mongoose.connection.collections;
-
-    drivers.drop()
-    .then(()=>{
-        done();
+  drivers
+    .drop()
+    .then(() => drivers.ensureIndex({ "geometry.coordinates" : "2dsphere" }))
+    .then(() => {
+      done();
     })
-    .catch(()=>{
-        done();
-    })
-})
+    .catch(() => {
+      done();
+    });
+});
